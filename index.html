@@ -24,6 +24,7 @@
             min-height: 100vh;
             margin: 0;
             transition: background-color 0.3s ease;
+            padding-top: 80px; /* Ajuste para garantir que o cabeçalho não sobreponha */
         }
 
         header {
@@ -34,9 +35,9 @@
             top: 0;
             left: 0;
             z-index: 10;
-            transition: transform 0.3s ease;
             display: flex;
             justify-content: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         header .menu {
@@ -68,7 +69,6 @@
         }
 
         .main-container {
-            margin-top: 150px;
             width: 100%;
             text-align: center;
             padding: 0 20px;
