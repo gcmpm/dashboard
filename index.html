@@ -265,7 +265,7 @@
             </div>
 
             <!-- Botão IA de Relatório -->
-            <div class="card" onclick="window.location.href='IA_URL'">
+            <div class="card" onclick="openChatbot()">
                 <i class="fas fa-brain"></i>
                 <h3>IA - Ajuda no Relatório</h3>
             </div>
@@ -292,6 +292,9 @@
         </div>
     </div>
 
+    <!-- Tidio Chatbot Script -->
+    <script src="//code.tidio.co/t7269ujaw6uq7bry6enx37gxsxyyflxc.js" async></script>
+
     <script>
         // Função para mostrar e esconder os botões de qualificados
         function toggleQualificados(buttonId) {
@@ -301,6 +304,11 @@
             if (buttonId === 'boletim' || buttonId === 'bos') {
                 qualificados.style.display = qualificadosStyle === 'block' ? 'none' : 'block';
             }
+        }
+
+        // Função para abrir o chatbot IA
+        function openChatbot() {
+            window.TidioChatApi.open();
         }
     </script>
 </body>
