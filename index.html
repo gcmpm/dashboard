@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Eletrônico de Registro de Ocorrências e Gestão de Viaturas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="//code.tidio.co/t7269ujaw6uq7bry6enx37gxsxyyflxc.js" async></script>
     <style>
         * {
             margin: 0;
@@ -265,7 +266,7 @@
             </div>
 
             <!-- Botão IA de Relatório -->
-            <div class="card" onclick="openChatbot()">
+            <div class="card" onclick="openChatBot()">
                 <i class="fas fa-brain"></i>
                 <h3>IA - Ajuda no Relatório</h3>
             </div>
@@ -292,10 +293,13 @@
         </div>
     </div>
 
-    <!-- Tidio Chatbot Script -->
-    <script src="//code.tidio.co/t7269ujaw6uq7bry6enx37gxsxyyflxc.js" async></script>
-
     <script>
+        // Função para abrir o chatbot IA
+        function openChatBot() {
+            // Isso ativará o chatbot
+            window.TidioChatApi.open();
+        }
+
         // Função para mostrar e esconder os botões de qualificados
         function toggleQualificados(buttonId) {
             const qualificados = document.getElementById('qualificados');
@@ -304,11 +308,6 @@
             if (buttonId === 'boletim' || buttonId === 'bos') {
                 qualificados.style.display = qualificadosStyle === 'block' ? 'none' : 'block';
             }
-        }
-
-        // Função para abrir o chatbot IA
-        function openChatbot() {
-            window.TidioChatApi.open();
         }
     </script>
 </body>
