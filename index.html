@@ -221,40 +221,54 @@
             }
         }
 
-        #chatContainer {
+        .chat-container {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 350px;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
             padding: 20px;
-            background-color: #f1f1f1;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            display: none;
-            z-index: 100;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
-        #chatMessages {
-            max-height: 300px;
-            overflow-y: auto;
+        .chat-container h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .chat-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             margin-bottom: 10px;
         }
 
-        #userInput {
-            width: 80%;
-            padding: 10px;
-        }
-
-        #sendBtn {
-            padding: 10px;
+        .chat-container button {
             background-color: #00aaff;
             color: white;
+            padding: 10px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        #sendBtn:hover {
-            background-color: #007bff;
+        .chat-container button:hover {
+            background-color: #0099cc;
+        }
+
+        .chatbot-message {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .chatbot-response {
+            color: #00aaff;
         }
     </style>
 </head>
@@ -275,106 +289,68 @@
         <h2 class="subtitle">REGISTRO ELETRÔNICO DE POLICIAMENTO ORDINÁRIO E RELATÓRIO TÉCNICO ESTATÍSTICO DE INTELIGÊNCIA</h2>
 
         <div class="cards-container">
-            <div class="card" onclick="toggleQualificados('boletim')">
+            <div class="card">
                 <i class="fas fa-file-alt"></i>
                 <h3>Boletim de Ocorrência</h3>
             </div>
-            <div class="card" onclick="toggleQualificados('bos')">
+            <div class="card">
                 <i class="fas fa-clipboard-check"></i>
                 <h3>Boletim Simplificado</h3>
             </div>
-            <div class="card" onclick="window.location.href='https://docs.google.com/forms/AV'">
+            <div class="card">
                 <i class="fas fa-gas-pump"></i>
                 <h3>Abastecimento de Viaturas</h3>
             </div>
-            <div class="card" onclick="window.location.href='https://docs.google.com/forms/KM'">
+            <div class="card">
                 <i class="fas fa-tachometer-alt"></i>
                 <h3>Abertura de KM das Viaturas</h3>
             </div>
-            <div class="card" onclick="window.location.href='https://docs.google.com/forms/AVT'">
+            <div class="card">
                 <i class="fas fa-car"></i>
                 <h3>Abertura das Viaturas</h3>
             </div>
-
-            <div class="card" onclick="openChat()">
+            <div class="card">
                 <i class="fas fa-brain"></i>
                 <h3>IA - Ajuda no Relatório</h3>
             </div>
-
-            <div class="card" onclick="window.location.href='REPORT_AREA_URL'">
+            <div class="card">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Reporte de Área</h3>
             </div>
-
-            <div class="card" onclick="window.location.href='REPORT_PERSON_URL'">
+            <div class="card">
                 <i class="fas fa-user"></i>
                 <h3>Reporte de Pessoa</h3>
             </div>
         </div>
-
-        <div class="qualificados" id="qualificados">
-            <button onclick="window.location.href='https://docs.google.com/forms/qualificado1'">1 Qualificado</button>
-            <button onclick="window.location.href='https://docs.google.com/forms/qualificado2'">2 Qualificados</button>
-            <button onclick="window.location.href='https://docs.google.com/forms/qualificado3'">3 Qualificados</button>
-            <button onclick="window.location.href='https://docs.google.com/forms/qualificado4'">4 Qualificados</button>
-            <button onclick="window.location.href='https://docs.google.com/forms/qualificado5'">5 Qualificados</button>
-        </div>
     </div>
 
-    <div id="chatContainer">
-        <div id="chatMessages"></div>
-        <input type="text" id="userInput" placeholder="Digite sua pergunta..." />
-        <button id="sendBtn">Enviar</button>
+    <div class="chat-container" id="chat-container">
+        <h3>Chatbot</h3>
+        <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+        <button onclick="sendMessage()">Enviar</button>
+
+        <div id="chat-messages"></div>
     </div>
 
     <script>
-        function toggleQualificados(buttonId) {
-            const qualificados = document.getElementById('qualificados');
-            const qualificadosStyle = qualificados.style.display;
+        function sendMessage() {
+            var input = document.getElementById("chat-input").value;
+            var chatMessages = document.getElementById("chat-messages");
 
-            if (buttonId === 'boletim' || buttonId === 'bos') {
-                qualificados.style.display = qualificadosStyle === 'block' ? 'none' : 'block';
+            if (input) {
+                // Enviar mensagem do usuário
+                chatMessages.innerHTML += "<div class='chatbot-message'>" + input + "</div>";
+
+                // Resposta do Chatbot (IA)
+                var response = "Você disse: " + input + " (aqui você pode implementar a lógica de IA)";
+
+                // Enviar resposta do chatbot
+                chatMessages.innerHTML += "<div class='chatbot-response'>" + response + "</div>";
+
+                // Limpar input
+                document.getElementById("chat-input").value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-        }
-
-        function openChat() {
-            document.getElementById('chatContainer').style.display = 'block';
-        }
-
-        document.getElementById("sendBtn").addEventListener("click", async () => {
-            const userMessage = document.getElementById("userInput").value;
-            if (!userMessage) return;
-
-            addMessageToChat("Você: " + userMessage);
-            const response = await getChatGPTResponse(userMessage);
-            addMessageToChat("ChatGPT: " + response);
-            document.getElementById("userInput").value = "";
-        });
-
-        function addMessageToChat(message) {
-            const messageElement = document.createElement("p");
-            messageElement.textContent = message;
-            document.getElementById("chatMessages").appendChild(messageElement);
-        }
-
-        async function getChatGPTResponse(userMessage) {
-            const apiKey = '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';
-            const response = await fetch("https://api.openai.com/v1/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`,
-                },
-                body: JSON.stringify({
-                    model: "text-davinci-003",
-                    prompt: userMessage,
-                    max_tokens: 150,
-                    temperature: 0.7,
-                }),
-            });
-
-            const data = await response.json();
-            return data.choices[0].text.trim();
         }
     </script>
 </body>
